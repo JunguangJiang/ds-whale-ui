@@ -88,8 +88,9 @@ const css = `
 .ds-whale-ui-lane {
   position: absolute;
   left: 0;
-  top: 3px;
+  top: auto;
   bottom: 0;
+  height: 28px;
   width: 100%;
   pointer-events: none;
   transition: width 0.6s ease;
@@ -100,7 +101,7 @@ const css = `
    animation is somehow not running. */
 .ds-whale-ui-whale {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 8px;
   width: 28px;
   height: 28px;
