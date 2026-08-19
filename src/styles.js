@@ -11,7 +11,7 @@ const css = `
    the .is-leaving stage collapses it back down before unmount. */
 .ds-whale-ui-dock {
   position: relative;
-  height: 36px;
+  height: 28px;
   pointer-events: none;
   animation: ds-whale-rise 0.35s ease-out;
   /* Match the TodoPanel/GoalBar width so the whale never extends beyond
@@ -32,10 +32,10 @@ const css = `
 }
 @keyframes ds-whale-rise {
   from { height: 0px; opacity: 0; }
-  to { height: 36px; opacity: 1; }
+  to { height: 28px; opacity: 1; }
 }
 @keyframes ds-whale-fall {
-  from { height: 36px; opacity: 1; }
+  from { height: 28px; opacity: 1; }
   to { height: 0px; opacity: 0; }
 }
 
