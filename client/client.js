@@ -46,16 +46,9 @@ const css = `
   to { height: 0px; opacity: 0; }
 }
 
-/* Waterline: a soft gradient line at the bottom of the row. */
+/* Waterline: hidden — cleaner look without the separator line. */
 .ds-whale-ui-bar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 2px;
-  overflow: hidden;
-  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 12%, transparent);
-  border-radius: 1px;
+  display: none;
 }
 .ds-whale-ui-bar-fill {
   position: absolute;
