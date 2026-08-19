@@ -15,12 +15,22 @@ const css = `
   pointer-events: none;
   animation: ds-whale-rise 0.35s ease-out;
   /* Match the input card's horizontal geometry so the whale swims only
-     within the composer box width, not the full viewport. The TodoPanel
-     and GoalBar use the same variables. */
+     within the composer box width, not the full viewport. */
   box-sizing: border-box;
   margin: 0 auto;
   max-width: var(--dsh-composer-card-max-width, 780px);
   width: calc(100% - 2 * var(--dsh-composer-side-clearance, 16px));
+  /* Water surface: same background + border as the input card below,
+     with rounded top corners and no bottom border — reads as a seamless
+     extension of the composer card. The stack gap is negated via
+     margin-bottom so there is no visual seam between dock and card. */
+  background: var(--dsw-specific-input-major, #1a1f2e);
+  border: 1px solid var(--dsw-alias-border-l2-darkmode-thin, rgba(255,255,255,0.06));
+  border-bottom: none;
+  border-radius: 22px 22px 0 0;
+  margin-bottom: calc(-1 * var(--dsh-composer-stack-gap, 6px) - 1px);
+  padding: 0 12px;
+  overflow: hidden;
 }
 .ds-whale-ui-dock.is-leaving {
   overflow: hidden;
@@ -35,17 +45,17 @@ const css = `
   to { height: 0px; opacity: 0; }
 }
 
-/* Waterline: a soft 2px gradient line at the bottom of the band. Running
-   in working phase (tools executing) and the finish sweep get a shimmer. */
+/* Waterline: a soft gradient at the very bottom of the surface — the
+   boundary between the water surface and the card below. */
 .ds-whale-ui-bar {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 12px;
+  right: 12px;
   bottom: 0;
-  height: 2px;
+  height: 1px;
   overflow: hidden;
-  background: color-mix(in srgb, var(--ds-whale-color, #4d9de0) 12%, transparent);
-  border-radius: 1px;
+  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 18%, transparent);
+  border-radius: 0.5px;
 }
 .ds-whale-ui-bar-fill {
   position: absolute;
@@ -92,7 +102,7 @@ const css = `
 .ds-whale-ui-lane {
   position: absolute;
   left: 0;
-  bottom: 2px;
+  bottom: 4px;
   height: 28px;
   width: 100%;
   pointer-events: none;
@@ -284,35 +294,38 @@ const css = `
   animation: ds-whale-bob 2.6s ease-in-out infinite;
 }
 
-/* Inline clock: right-aligned, mirrors the replaced status line's clock. */
+/* Inline clock: sits right before the chip, same subtle style. */
 .ds-whale-ui-elapsed {
   position: absolute;
-  right: 2px;
-  bottom: 8px;
-  font: 11px/1.2 system-ui, sans-serif;
+  right: 16px;
+  bottom: 10px;
+  font: 10px/1.2 system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
-  color: color-mix(in srgb, var(--ds-whale-color, #4d9de0) 75%, #8fa3bd);
+  color: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 60%, currentColor);
+  opacity: 0.7;
   pointer-events: none;
 }
 
-/* Hover chip: floats above the band so it never covers the composer. */
+/* Chip: sits inline on the water surface (right-aligned), like a buoy.
+   Part of the dock surface, not a floating tooltip — blends naturally. */
 .ds-whale-ui-chip {
   position: absolute;
-  right: 0;
-  bottom: calc(100% + 6px);
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   pointer-events: auto;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
-  padding: 6px 12px;
-  border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--ds-whale-color, #4d9de0) 40%, transparent);
-  background: rgba(18, 26, 42, 0.92);
-  color: #e8f2ff;
-  font: 12px/1.4 system-ui, sans-serif;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 10%, transparent);
+  color: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 85%, currentColor);
+  font: 11px/1.4 system-ui, sans-serif;
+  white-space: nowrap;
+  opacity: 0.9;
 }
-.ds-whale-ui-chip-time { font-variant-numeric: tabular-nums; opacity: 0.85; }
+.ds-whale-ui-chip-time { font-variant-numeric: tabular-nums; opacity: 0.8; }
 
 /* Replace the built-in "Deep diving..." turn-status line: it lives inside
    the conversation.view slot anchor and is the only status element there.
