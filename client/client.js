@@ -47,8 +47,18 @@ const css = `
 }
 
 /* Waterline: hidden — cleaner look without the separator line. */
+/* Waterline / progress bar: sits at the bottom of the dock row, right
+   above the input card. Doubles as a progress indicator when a todo
+   plan is active. */
 .ds-whale-ui-bar {
-  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 12%, transparent);
+  border-radius: 1px;
 }
 .ds-whale-ui-bar-fill {
   position: absolute;
