@@ -20,17 +20,6 @@ const css = `
   margin: 0 auto;
   max-width: var(--dsh-composer-card-max-width, 780px);
   width: calc(100% - 2 * var(--dsh-composer-side-clearance, 16px));
-  /* Water surface: same background + border as the input card below,
-     with rounded top corners and no bottom border — reads as a seamless
-     extension of the composer card. The stack gap is negated via
-     margin-bottom so there is no visual seam between dock and card. */
-  background: var(--dsw-specific-input-major, #1a1f2e);
-  border: 1px solid var(--dsw-alias-border-l2-darkmode-thin, rgba(255,255,255,0.06));
-  border-bottom: none;
-  border-radius: 22px 22px 0 0;
-  margin-bottom: calc(-1 * var(--dsh-composer-stack-gap, 6px) - 1px);
-  padding: 0 12px;
-  overflow: hidden;
 }
 .ds-whale-ui-dock.is-leaving {
   overflow: hidden;
@@ -45,17 +34,16 @@ const css = `
   to { height: 0px; opacity: 0; }
 }
 
-/* Waterline: a soft gradient at the very bottom of the surface — the
-   boundary between the water surface and the card below. */
+/* Waterline: a soft gradient line at the bottom of the row. */
 .ds-whale-ui-bar {
   position: absolute;
-  left: 12px;
-  right: 12px;
+  left: 0;
+  right: 0;
   bottom: 0;
-  height: 1px;
+  height: 2px;
   overflow: hidden;
-  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 18%, transparent);
-  border-radius: 0.5px;
+  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 12%, transparent);
+  border-radius: 1px;
 }
 .ds-whale-ui-bar-fill {
   position: absolute;
@@ -294,23 +282,22 @@ const css = `
   animation: ds-whale-bob 2.6s ease-in-out infinite;
 }
 
-/* Inline clock: sits right before the chip, same subtle style. */
+/* Inline clock: right-aligned, subtle. */
 .ds-whale-ui-elapsed {
   position: absolute;
-  right: 16px;
-  bottom: 10px;
-  font: 10px/1.2 system-ui, sans-serif;
+  right: 4px;
+  bottom: 7px;
+  font: 11px/1.2 system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
   color: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 60%, currentColor);
   opacity: 0.7;
   pointer-events: none;
 }
 
-/* Chip: sits inline on the water surface (right-aligned), like a buoy.
-   Part of the dock surface, not a floating tooltip — blends naturally. */
+/* Chip: subtle inline label right-aligned within the row. */
 .ds-whale-ui-chip {
   position: absolute;
-  right: 16px;
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: auto;
@@ -319,11 +306,10 @@ const css = `
   align-items: center;
   padding: 3px 10px;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 10%, transparent);
-  color: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 85%, currentColor);
+  background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 8%, transparent);
+  color: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 70%, currentColor);
   font: 11px/1.4 system-ui, sans-serif;
   white-space: nowrap;
-  opacity: 0.9;
 }
 .ds-whale-ui-chip-time { font-variant-numeric: tabular-nums; opacity: 0.8; }
 
