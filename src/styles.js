@@ -44,7 +44,7 @@ const css = `
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 0;
+  top: 0;
   height: 2px;
   overflow: hidden;
   background: color-mix(in srgb, var(--ds-whale-color, #4d6bfe) 12%, transparent);
@@ -95,8 +95,8 @@ const css = `
 .ds-whale-ui-lane {
   position: absolute;
   left: 0;
-  bottom: 4px;
-  height: 28px;
+  top: 3px;
+  bottom: 0;
   width: 100%;
   pointer-events: none;
   transition: width 0.6s ease;
@@ -107,7 +107,7 @@ const css = `
    animation is somehow not running. */
 .ds-whale-ui-whale {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 8px;
   width: 28px;
   height: 28px;
@@ -256,7 +256,7 @@ const css = `
 .ds-whale-ui-ambient { position: absolute; inset: 0; pointer-events: none; }
 .ds-whale-ui-ambient i {
   position: absolute;
-  bottom: 3px;
+  top: 5px;
   width: 4px;
   height: 4px;
   border-radius: 50%;
