@@ -21,12 +21,17 @@ const css = `
   height: 36px;
   pointer-events: none;
   animation: ds-whale-rise 0.35s ease-out;
-  /* Match the input card's horizontal geometry so the whale swims only
-     within the composer box width, not the full viewport. */
+  /* Match the TodoPanel/GoalBar width so the whale never extends beyond
+     the branch-selection buttons above. Uses the same formula:
+     100% - 2*clearance - 4*dockInset, capped at card-max - 4*dockInset. */
   box-sizing: border-box;
   margin: 0 auto;
-  max-width: var(--dsh-composer-card-max-width, 780px);
-  width: calc(100% - 2 * var(--dsh-composer-side-clearance, 16px));
+  max-width: calc(var(--dsh-composer-card-max-width, 780px) - 4 * var(--dsh-composer-dock-inset, 8px));
+  width: calc(
+    100% -
+    2 * var(--dsh-composer-side-clearance, 16px) -
+    4 * var(--dsh-composer-dock-inset, 8px)
+  );
 }
 .ds-whale-ui-dock.is-leaving {
   overflow: hidden;
