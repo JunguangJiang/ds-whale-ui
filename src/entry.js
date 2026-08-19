@@ -40,7 +40,7 @@ mod.apply = function apply(ctx) {
   ctx.slots.inject('conversation.input.dock', () => ctx.slots.register({
     name: 'conversation.input.dock',
     id: NS,
-    order: 0,
+    order: 99,
     label: () => 'ds-whale-ui',
   }, (props) => React.createElement(WhaleDock, { ...props, t })))
 
